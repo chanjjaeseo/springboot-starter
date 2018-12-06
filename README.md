@@ -1,3 +1,3 @@
 ## springboot-starter
 
-**quickly start you springboot project**
+**quickly start your springboot project**

@@ -1,10 +1,9 @@
-package com.springboot.demo.conf;
+package com.springboot.demo.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
@@ -17,7 +16,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Set;
 
-@Configuration
+//@Configuration
 public class CacheConfig {
 
     @Value("${spring.redis.sentinel.master}")

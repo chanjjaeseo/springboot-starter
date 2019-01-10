@@ -1,6 +1,6 @@
 package com.springboot.demo.controller;
 
-import com.springboot.demo.conf.DemoProperties;
+import com.springboot.demo.config.DemoProperties;
 import com.springboot.demo.dao.StudentDAO;
 import com.springboot.demo.dao.StudentMapper;
 import com.springboot.demo.domain.Student;
@@ -19,6 +19,11 @@ public class PrintController {
 
     @Autowired
     private StudentMapper studentMapper;
+
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
 
     @GetMapping("/print/test")
     String index() {

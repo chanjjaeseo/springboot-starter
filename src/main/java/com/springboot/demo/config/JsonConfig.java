@@ -1,4 +1,4 @@
-package com.springboot.demo.conf;
+package com.springboot.demo.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;

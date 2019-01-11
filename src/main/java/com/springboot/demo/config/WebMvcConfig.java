@@ -42,12 +42,12 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         4.将convert添加到converters中
          */
         //1.定义一个convert转换消息对象
-         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         // /2.添加fastjson的配置信息，比如：是否要格式化返回json数据
-         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-         fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
-         fastConverter.setFastJsonConfig(fastJsonConfig);
-         converters.add(fastConverter);
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.PrettyFormat);
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        converters.add(fastConverter);
     }
 
 }

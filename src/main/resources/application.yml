@@ -1,4 +1,6 @@
 spring:
+  resources:
+    static-locations: classpath:/static/,classpath:/views/,classpath:/META-INF/resources/,classpath:/META-INF/resources/webjars/
   profiles:
     active: dev
   redis:

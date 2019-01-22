@@ -40,7 +40,7 @@ public class ExceptionCatcherAspect {
     private Object handlerBizException(BizException e, ProceedingJoinPoint pjp, ExceptionCatcher ec) throws InstantiationException, IllegalAccessException {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         try {
-            logger.error("BizException | {}=>{} | param: {}", pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
+            logger.error("BizException | {}=>{}() | param: {}", pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
         } catch (JsonProcessingException e1) {
             //
         }
@@ -51,7 +51,7 @@ public class ExceptionCatcherAspect {
     private Object handlerException(Exception e, ProceedingJoinPoint pjp, ExceptionCatcher ec) throws InstantiationException, IllegalAccessException {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         try{
-            logger.error("{} | {}=>{} | param: {}", e.getClass().getName(), pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
+            logger.error("{} | {}=>{}() | param: {}", e.getClass().getName(), pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
         } catch (JsonProcessingException e1) {
             //
         }

@@ -11,7 +11,7 @@ public class ExceptionCatcherTest extends DemoApplicationTests {
 
     @Test
     public void test() {
-        testService.service1();
+        testService.service1("123");
     }
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class TestService {
 
     @ExceptionCatcher
-    public void service1() {
+    public boolean service1(String str) {
         throw new BizException("业务异常1");
     }
 

@@ -30,29 +30,28 @@ public class ExceptionCatcherAspect {
     public Object handlerException(ProceedingJoinPoint pjp, ExceptionCatcher ec) throws Throwable {
         try {
             return pjp.proceed();
-        } catch (Throwable throwable) {
-            if (throwable instanceof BizException) {
-                return handlerBizException((BizException) throwable, pjp, ec);
-            } else {
-                return handlerException((BizException) throwable, pjp, ec);
-            }
+        } catch (BizException bizException) {
+            return handlerBizException(bizException, pjp, ec);
+        } catch (Exception exception) {
+            return handlerException(exception, pjp, ec);
         }
     }
 
-    private Object handlerBizException(BizException e, ProceedingJoinPoint pjp, ExceptionCatcher ec) {
+    private Object handlerBizException(BizException e, ProceedingJoinPoint pjp, ExceptionCatcher ec) throws InstantiationException, IllegalAccessException {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         try {
-            logger.error("BizException | {}.{} | param: {}", pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
+            logger.error("BizException | {}=>{} | param: {}", pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
         } catch (JsonProcessingException e1) {
             //
         }
-        return null;
+        Class returnType = signature.getReturnType();
+        return returnValue(returnType, ec);
     }
 
     private Object handlerException(Exception e, ProceedingJoinPoint pjp, ExceptionCatcher ec) throws InstantiationException, IllegalAccessException {
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         try{
-            logger.error("{} | {}.{} | param: {}", e.getClass().getName(), pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
+            logger.error("{} | {}=>{} | param: {}", e.getClass().getName(), pjp.getTarget().getClass().getName(), signature.getName(), objectMapper.writeValueAsString(pjp.getArgs()), e);
         } catch (JsonProcessingException e1) {
             //
         }
